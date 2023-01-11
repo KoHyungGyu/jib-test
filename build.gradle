@@ -23,6 +23,19 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
+jib {
+	from {
+		image = "adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.11_9"
+	}
+	to {
+		image = "gudrb963/jib-test"
+		tags = ["0.1.0"]
+	}
+	container {
+		jvmFlags = ["-Xms128m", "-Xmx128m"]
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
